@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
+import org.firstinspires.ftc.teamcode.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrivetrain;
 
 @TeleOp(name="Basic: Iterative OpMode", group="Iterative OpMode")
@@ -19,6 +20,7 @@ public class Teleop extends OpMode
     // Declare OpMode members.
     private MecanumDrivetrain drivetrain;
     private Arm arm;
+    private Elevator elevator;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -81,6 +83,7 @@ public class Teleop extends OpMode
     public void makeSubsystems(){
         drivetrain = new MecanumDrivetrain(this.hardwareMap, this.telemetry);
         arm = new Arm(this.hardwareMap, this.telemetry);
+        elevator = new Elevator(this.hardwareMap, this.telemetry);
     }
 
 }
