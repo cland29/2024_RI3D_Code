@@ -34,6 +34,10 @@ public class DcMotorExBuilder {
         return this;
     }
 
+    public static DcMotorExBuilder create(HardwareMap hardwareMap, String hardwareID){
+        return new DcMotorExBuilder(hardwareMap, hardwareID);
+    }
+
     public DcMotorEx build(){
         return motor;
     }
