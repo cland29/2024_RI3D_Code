@@ -52,13 +52,22 @@ public class Teleop extends OpMode
     public void loop() {
         drivetrain.mecanumDrive_Cartesian(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
         if (gamepad1.dpad_up){
-            arm.setMotorPower(0.5);
+            arm.setMotorPos(300);
+            //arm.setMotorPower(0.5);
         } else if (gamepad1.dpad_down) {
-            arm.setMotorPower(-0.5);
-
+            arm.setMotorPos(-900);
+            //arm.setMotorPower(-0.5);
         }else{
-            arm.setMotorPower(0.0);
+            //arm.setMotorPower(0.0);
         }
+        telemetry.addData("Encoder Value", arm.getEncoderPosition());
+        telemetry.addData("Encoder Target", arm.getEncoderTarget());
+        telemetry.addData("isBusy", arm.armMotor.isBusy());
+        telemetry.addData("tolerance", arm.armMotor.getTargetPositionTolerance());
+        telemetry.addData("enabled?",  arm.armMotor.isMotorEnabled());
+        telemetry.addData("Motor type?", arm.armMotor.getMotorType());
+        telemetry.addData("Power", arm.armMotor.getPower());
+        telemetry.update();
     }
 
     /*
