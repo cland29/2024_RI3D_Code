@@ -11,7 +11,7 @@ public class DcMotorExBuilder {
     private DcMotorEx motor;
 
     public DcMotorExBuilder(HardwareMap hardwareMap, String hardwareID){
-        motor = hardwareMap.get(DcMotorImplEx.class, hardwareID);
+        motor = hardwareMap.get(DcMotorEx.class, hardwareID);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
