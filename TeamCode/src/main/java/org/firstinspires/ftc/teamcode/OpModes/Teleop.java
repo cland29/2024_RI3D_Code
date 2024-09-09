@@ -1,14 +1,8 @@
 package org.firstinspires.ftc.teamcode.OpModes;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrivetrain;
@@ -62,13 +56,13 @@ public class Teleop extends OpMode
         }else{
             //arm.setMotorPower(0.0);
         }
-        telemetry.addData("Encoder Value", arm.getEncoderPosition());
-        telemetry.addData("Encoder Target", arm.getEncoderTarget());
-        telemetry.addData("isBusy", arm.armMotor.isBusy());
-        telemetry.addData("tolerance", arm.armMotor.getTargetPositionTolerance());
-        telemetry.addData("enabled?",  arm.armMotor.isMotorEnabled());
-        telemetry.addData("Motor type?", arm.armMotor.getMotorType());
-        telemetry.addData("Power", arm.armMotor.getPower());
+        telemetry.addData("Encoder Value", arm.getLeftEncoderPosition());
+        telemetry.addData("Encoder Target", arm.getLeftEncoderTarget());
+        telemetry.addData("isBusy", arm.leftArmMotor.isBusy());
+        telemetry.addData("tolerance", arm.leftArmMotor.getTargetPositionTolerance());
+        telemetry.addData("enabled?",  arm.leftArmMotor.isMotorEnabled());
+        telemetry.addData("Motor type?", arm.leftArmMotor.getMotorType());
+        telemetry.addData("Power", arm.leftArmMotor.getPower());
         telemetry.update();
     }
 
