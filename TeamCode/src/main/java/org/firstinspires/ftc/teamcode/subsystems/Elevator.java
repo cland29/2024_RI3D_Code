@@ -29,8 +29,8 @@ public class Elevator {
                 .withDirection(DcMotorSimple.Direction.REVERSE)
                 .build();
 
-        leftBucketServo = hardwareMap.get(Servo.class, "leftBucketServo");
-        rightBucketServo = hardwareMap.get(Servo.class, "rightBucketServo");
+        leftBucketServo = hardwareMap.get(Servo.class, HardwareIDMap.LEFT_BUCKET_SERVO_ID);
+        rightBucketServo = hardwareMap.get(Servo.class, HardwareIDMap.RIGHT_BUCKET_SERVO_ID);
 
         leftBucketServo.setDirection(Servo.Direction.FORWARD);
         rightBucketServo.setDirection(Servo.Direction.REVERSE);
