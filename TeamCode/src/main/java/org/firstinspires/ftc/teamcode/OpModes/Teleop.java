@@ -152,15 +152,15 @@ public class Teleop extends OpMode
     }
 
     public void stowArm(){
-        arm.setMotorPos(0);
+        arm.setMotorPos(436);
     }
 
     public void handoffArm(){
-        arm.setMotorPos(-200);
+        arm.setMotorPos(0);
     }
 
     public void intakePosArm(){
-        arm.setMotorPos(200);
+        arm.setMotorPos(436+875);
     }
 
     public void ejectFromBucket(){
