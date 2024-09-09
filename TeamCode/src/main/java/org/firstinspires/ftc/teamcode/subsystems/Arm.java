@@ -10,23 +10,24 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.constants.HardwareIDMap;
+import org.firstinspires.ftc.teamcode.constants.SubsystemConstants;
 import org.firstinspires.ftc.teamcode.util.motor.DcMotorExBuilder;
 
 public class Arm {
 
     public DcMotorEx leftArmMotor, rightArmMotor;
     public CRServo leftIntakeServo, rightIntakeServo;
-    public final PIDFCoefficients pidCoef = new PIDFCoefficients(-0.5, 0.0, 0.0, 0.0);
+    private double[] pidfValues = SubsystemConstants.ArmConstants.PIDF_VALUES;
 
     public Arm(HardwareMap hardwareMap, Telemetry telemtry) {
         leftArmMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.LEFT_ARM_MOTOR_ID)
-                .withPositionalPIDF(10, 2, 0.0, 0.0)
+                .withPositionalPIDF(pidfValues[0], pidfValues[1], pidfValues[2], pidfValues[3])
                 .withDirection(DcMotorSimple.Direction.FORWARD)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
                 .build();
 
         rightArmMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.RIGHT_ARM_MOTOR_ID)
-                .withPositionalPIDF(10, 2, 0.0, 0.0)
+                .withPositionalPIDF(pidfValues[0], pidfValues[1], pidfValues[2], pidfValues[3])
                 .withDirection(DcMotorSimple.Direction.REVERSE)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
                 .build();

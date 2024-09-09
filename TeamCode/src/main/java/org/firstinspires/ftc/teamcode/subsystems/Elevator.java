@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.constants.HardwareIDMap;
+import org.firstinspires.ftc.teamcode.constants.SubsystemConstants;
 import org.firstinspires.ftc.teamcode.util.motor.DcMotorExBuilder;
 
 public class Elevator {
@@ -15,17 +16,18 @@ public class Elevator {
     private DcMotorEx rightLiftMotor, leftLiftMotor;
     private Servo leftBucketServo;
     private Servo rightBucketServo;
+    private double[] pidfValues = SubsystemConstants.ElevatorConstants.PIDF_VALUES;
 
     public Elevator(HardwareMap hardwareMap, Telemetry telemetry){
         rightLiftMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.RIGHT_LIFT_MOTOR_ID)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
-                .withPositionalPIDF(10, 2, 0, 0)
+                .withPositionalPIDF(pidfValues[0], pidfValues[1], pidfValues[2], pidfValues[3])
                 .withDirection(DcMotorSimple.Direction.FORWARD)
                 .build();
 
         leftLiftMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.LEFT_LIFT_MOTOR_ID)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
-                .withPositionalPIDF(10, 2, 0, 0)
+                .withPositionalPIDF(pidfValues[0], pidfValues[1], pidfValues[2], pidfValues[3])
                 .withDirection(DcMotorSimple.Direction.REVERSE)
                 .build();
 

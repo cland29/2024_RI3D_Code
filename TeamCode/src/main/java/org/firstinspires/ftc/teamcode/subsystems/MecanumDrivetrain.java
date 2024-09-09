@@ -8,12 +8,13 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.constants.HardwareIDMap;
+import org.firstinspires.ftc.teamcode.constants.SubsystemConstants;
 import org.firstinspires.ftc.teamcode.sensors.NavX;
 
 public class MecanumDrivetrain {
     NavX imu;
     private DcMotor frontLeftMotor, frontRightMotor, backLeftMotor, backRightMotor;
-    final double DRIVE_SPEED_MODIFER = 0.75;
+
 
 
     public MecanumDrivetrain(HardwareMap hardwareMap, Telemetry telemtry) {
@@ -98,9 +99,9 @@ public class MecanumDrivetrain {
         double wheelSpeeds[] = new double[4];
 
         // Slow it down
-        x *= DRIVE_SPEED_MODIFER;
-        y *= DRIVE_SPEED_MODIFER;
-        rotation *= DRIVE_SPEED_MODIFER;
+        x *= SubsystemConstants.MecanumDrivetrainConstants.DRIVE_SPEED_MODIFER;
+        y *= SubsystemConstants.MecanumDrivetrainConstants.DRIVE_SPEED_MODIFER;
+        rotation *= SubsystemConstants.MecanumDrivetrainConstants.DRIVE_SPEED_MODIFER;
 
 
         // Deadband prevents controller movement for very small motions to prevent unintentional movements
