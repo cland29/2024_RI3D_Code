@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.constants.HardwareIDMap;
@@ -13,6 +15,7 @@ import org.firstinspires.ftc.teamcode.util.motor.DcMotorExBuilder;
 public class Arm {
 
     public DcMotorEx leftArmMotor, rightArmMotor;
+    public CRServo leftIntakeServo, rightIntakeServo;
     public final PIDFCoefficients pidCoef = new PIDFCoefficients(-0.5, 0.0, 0.0, 0.0);
 
     public Arm(HardwareMap hardwareMap, Telemetry telemtry) {
@@ -30,6 +33,12 @@ public class Arm {
 
         leftArmMotor.setVelocity(2700);
         rightArmMotor.setVelocity(2700);
+
+        leftIntakeServo = hardwareMap.get(CRServo.class, HardwareIDMap.LEFT_INTAKE_SERV0_ID);
+        rightIntakeServo = hardwareMap.get(CRServo.class, HardwareIDMap.RIGHT_INTAKE_SERVO_ID);
+
+        leftIntakeServo.setDirection(CRServo.Direction.FORWARD);
+        rightIntakeServo.setDirection(CRServo.Direction.REVERSE);
     }
 
 
@@ -41,6 +50,11 @@ public class Arm {
     public void setMotorPos(int degreesFromHorizontal){
         leftArmMotor.setTargetPosition(degreesFromHorizontal);
         rightArmMotor.setTargetPosition(degreesFromHorizontal);
+    }
+
+    public void setIntakePower(double power){
+        leftIntakeServo.setPower(power);
+        rightIntakeServo.setPower(power);
     }
 
     public int getLeftEncoderPosition(){
