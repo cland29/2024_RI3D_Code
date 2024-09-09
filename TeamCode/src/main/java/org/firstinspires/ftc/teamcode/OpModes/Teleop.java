@@ -56,11 +56,11 @@ public class Teleop extends OpMode
         checkOpController();
         telemetry.addData("Encoder Value", arm.getLeftEncoderPosition());
         telemetry.addData("Encoder Target", arm.getLeftEncoderTarget());
-        telemetry.addData("isBusy", arm.leftArmMotor.isBusy());
-        telemetry.addData("tolerance", arm.leftArmMotor.getTargetPositionTolerance());
-        telemetry.addData("enabled?",  arm.leftArmMotor.isMotorEnabled());
-        telemetry.addData("Motor type?", arm.leftArmMotor.getMotorType());
-        telemetry.addData("Power", arm.leftArmMotor.getPower());
+        telemetry.addData("isBusy", arm.armMotor.isBusy());
+        telemetry.addData("tolerance", arm.armMotor.getTargetPositionTolerance());
+        telemetry.addData("enabled?",  arm.armMotor.isMotorEnabled());
+        telemetry.addData("Motor type?", arm.armMotor.getMotorType());
+        telemetry.addData("Power", arm.armMotor.getPower());
         telemetry.update();
     }
 
