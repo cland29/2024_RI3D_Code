@@ -73,4 +73,8 @@ public class Arm {
     public int getRightEncoderTarget(){
         return leftArmMotor.getTargetPosition();
     }
+
+    public boolean getBusy(){
+        return leftArmMotor.isBusy() || rightArmMotor.isBusy();
+    }
 }

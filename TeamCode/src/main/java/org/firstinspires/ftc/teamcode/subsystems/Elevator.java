@@ -48,5 +48,9 @@ public class Elevator {
         rightBucketServo.setPosition(pos);
     }
 
+    public boolean isBusy(){
+        return leftLiftMotor.isBusy() || rightLiftMotor.isBusy();
+    }
+
 
 }
