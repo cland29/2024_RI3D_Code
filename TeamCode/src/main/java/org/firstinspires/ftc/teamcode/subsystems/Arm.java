@@ -32,8 +32,8 @@ public class Arm {
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
                 .build();
 
-        leftArmMotor.setVelocity(2700);
-        rightArmMotor.setVelocity(2700);
+        leftArmMotor.setVelocity(SubsystemConstants.ArmConstants.MAX_VELOCITY);
+        rightArmMotor.setVelocity(SubsystemConstants.ArmConstants.MAX_VELOCITY);
 
         leftIntakeServo = hardwareMap.get(CRServo.class, HardwareIDMap.LEFT_INTAKE_SERV0_ID);
         rightIntakeServo = hardwareMap.get(CRServo.class, HardwareIDMap.RIGHT_INTAKE_SERVO_ID);
