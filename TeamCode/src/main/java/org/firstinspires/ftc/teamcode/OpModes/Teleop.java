@@ -46,16 +46,8 @@ public class Teleop extends OpMode
      */
     @Override
     public void loop() {
-        drivetrain.mecanumDrive_Cartesian(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
-        if (gamepad1.dpad_up){
-            arm.setMotorPos(300);
-            //arm.setMotorPower(0.5);
-        } else if (gamepad1.dpad_down) {
-            arm.setMotorPos(-900);
-            //arm.setMotorPower(-0.5);
-        }else{
-            //arm.setMotorPower(0.0);
-        }
+        checkDriverController();
+        checkOpController();
         telemetry.addData("Encoder Value", arm.getLeftEncoderPosition());
         telemetry.addData("Encoder Target", arm.getLeftEncoderTarget());
         telemetry.addData("isBusy", arm.leftArmMotor.isBusy());
@@ -79,5 +71,97 @@ public class Teleop extends OpMode
         arm = new Arm(this.hardwareMap, this.telemetry);
         elevator = new Elevator(this.hardwareMap, this.telemetry);
     }
+
+    public void checkDriverController(){
+        drivetrain.mecanumDrive_Cartesian(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+
+
+        if (gamepad1.dpad_up){
+            arm.setMotorPos(300);
+            //arm.setMotorPower(0.5);
+        } else if (gamepad1.dpad_down) {
+            arm.setMotorPos(-900);
+            //arm.setMotorPower(-0.5);
+        }
+    }
+
+    public void checkOpController(){
+        if(gamepad2.circle){
+            intakePosArm();
+            intake();
+
+        }else if (gamepad2.cross){
+            handOffGamepiece();
+        }else if (gamepad2.square) {
+            ejectFromBucket();
+        }else if (gamepad2.dpad_down) {
+            lowerElevator();
+        }else if (gamepad2.dpad_up) {
+            raiseElevator();
+        }else{
+            stowArm();
+            idleIntake();
+        }
+    }
+
+    public void intake(){
+        arm.setIntakePower(0.5);
+    }
+
+    public void idleIntake(){
+        arm.setIntakePower(0.0);
+    }
+
+
+    public void handOffGamepiece(){
+        lowerElevator();
+        stowArm();
+        stowBucket();
+        boolean elevatorMoving = elevator.isBusy();
+        if (!elevatorMoving){
+            handoffArm();
+        }
+
+        if (!elevatorMoving && !arm.getBusy()){
+            intake();
+        }
+    }
+
+    public void lowerElevator(){
+        stowArm();
+        if (!arm.getBusy()){
+            elevator.setMotorPos(0);
+        }
+
+    }
+
+    public void raiseElevator(){
+        stowArm();
+        if (!arm.getBusy()){
+            elevator.setMotorPos(1000);
+        }
+
+    }
+
+    public void stowArm(){
+        arm.setMotorPos(0);
+    }
+
+    public void handoffArm(){
+        arm.setMotorPos(-200);
+    }
+
+    public void intakePosArm(){
+        arm.setMotorPos(200);
+    }
+
+    public void ejectFromBucket(){
+        elevator.setBucketPos(90);
+    }
+
+    public void stowBucket(){
+        elevator.setBucketPos(0);
+    }
+
 
 }
