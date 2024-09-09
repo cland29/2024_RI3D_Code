@@ -16,6 +16,12 @@ public class Teleop extends OpMode
     private Arm arm;
     private Elevator elevator;
 
+    public enum State{
+        Intaking,
+        Stowed,
+        Handoff,
+        scoring
+    }
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -103,6 +109,8 @@ public class Teleop extends OpMode
             idleIntake();
         }
     }
+
+
 
     public void intake(){
         arm.setIntakePower(0.5);
