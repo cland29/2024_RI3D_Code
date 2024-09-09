@@ -20,7 +20,7 @@ public class Arm {
     public Arm(HardwareMap hardwareMap, Telemetry telemtry) {
         armMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.LEFT_ARM_MOTOR_ID)
                 .withPositionalPIDF(pidfValues[0], pidfValues[1], pidfValues[2], pidfValues[3])
-                .withDirection(DcMotorSimple.Direction.FORWARD)
+                .withDirection(DcMotorSimple.Direction.REVERSE)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
                 .build();
 
