@@ -18,7 +18,7 @@ public class Arm {
     private double[] pidfValues = SubsystemConstants.ArmConstants.PIDF_VALUES;
 
     public Arm(HardwareMap hardwareMap, Telemetry telemtry) {
-        armMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.LEFT_ARM_MOTOR_ID)
+        armMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.ARM_MOTOR_ID)
                 .withPositionalPIDF(pidfValues[0], pidfValues[1], pidfValues[2], pidfValues[3])
                 .withDirection(DcMotorSimple.Direction.REVERSE)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
