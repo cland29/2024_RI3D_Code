@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.constants.HardwareIDMap;
 import org.firstinspires.ftc.teamcode.sensors.NavX;
 
 public class MecanumDrivetrain {
@@ -16,10 +17,10 @@ public class MecanumDrivetrain {
 
 
     public MecanumDrivetrain(HardwareMap hardwareMap, Telemetry telemtry) {
-        frontLeftMotor = hardwareMap.get(DcMotor.class, "FL");
-        backLeftMotor = hardwareMap.get(DcMotor.class, "BL");
-        frontRightMotor = hardwareMap.get(DcMotor.class, "FR");
-        backRightMotor = hardwareMap.get(DcMotor.class, "BR");
+        frontLeftMotor = hardwareMap.get(DcMotor.class, HardwareIDMap.LEFT_FRONT_MOTOR_ID);
+        backLeftMotor = hardwareMap.get(DcMotor.class, HardwareIDMap.LEFT_BACK_MOTOR_ID);
+        frontRightMotor = hardwareMap.get(DcMotor.class, HardwareIDMap.RIGHT_FRONT_MOTOR_ID);
+        backRightMotor = hardwareMap.get(DcMotor.class, HardwareIDMap.RIGHT_BACK_MOTOR_ID);
 
         frontLeftMotor.setDirection(DcMotor.Direction.FORWARD);
         backLeftMotor.setDirection(DcMotor.Direction.REVERSE);
