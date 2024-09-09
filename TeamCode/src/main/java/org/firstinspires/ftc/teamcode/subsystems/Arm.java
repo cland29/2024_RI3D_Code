@@ -28,6 +28,7 @@ public class Arm {
                 .build();
 
         leftArmMotor.setVelocity(2700);
+        rightArmMotor.setVelocity(2700);
     }
 
 
