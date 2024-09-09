@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -14,8 +15,8 @@ import org.firstinspires.ftc.teamcode.util.motor.DcMotorExBuilder;
 public class Elevator {
 
     private DcMotorEx rightLiftMotor, leftLiftMotor;
-    private Servo leftBucketServo;
-    private Servo rightBucketServo;
+    private CRServo leftBucketServo;
+    private CRServo rightBucketServo;
     private double[] pidfValues = SubsystemConstants.ElevatorConstants.PIDF_VALUES;
 
     public Elevator(HardwareMap hardwareMap, Telemetry telemetry){
@@ -31,11 +32,11 @@ public class Elevator {
                 .withDirection(DcMotorSimple.Direction.REVERSE)
                 .build();
 
-        leftBucketServo = hardwareMap.get(Servo.class, HardwareIDMap.LEFT_BUCKET_SERVO_ID);
-        rightBucketServo = hardwareMap.get(Servo.class, HardwareIDMap.RIGHT_BUCKET_SERVO_ID);
+        leftBucketServo = hardwareMap.get(CRServo.class, HardwareIDMap.LEFT_BUCKET_SERVO_ID);
+        rightBucketServo = hardwareMap.get(CRServo.class, HardwareIDMap.RIGHT_BUCKET_SERVO_ID);
 
-        leftBucketServo.setDirection(Servo.Direction.FORWARD);
-        rightBucketServo.setDirection(Servo.Direction.REVERSE);
+        leftBucketServo.setDirection(CRServo.Direction.FORWARD);
+        rightBucketServo.setDirection(CRServo.Direction.REVERSE);
     }
 
     public void setMotorPos(int pos){
@@ -43,9 +44,9 @@ public class Elevator {
         leftLiftMotor.setTargetPosition(pos);
     }
 
-    public void setBucketPos(int pos){
-        leftBucketServo.setPosition(pos);
-        rightBucketServo.setPosition(pos);
+    public void setBucketPower(double power){
+        leftBucketServo.setPower(power);
+        rightBucketServo.setPower(power);
     }
 
     public boolean isBusy(){

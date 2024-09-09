@@ -107,6 +107,7 @@ public class Teleop extends OpMode
         }else{
             stowArm();
             idleIntake();
+            idleBucket();
         }
     }
 
@@ -122,15 +123,8 @@ public class Teleop extends OpMode
 
 
     public void handOffGamepiece(){
-        lowerElevator();
-        stowArm();
-        stowBucket();
-        boolean elevatorMoving = elevator.isBusy();
-        if (!elevatorMoving){
-            handoffArm();
-        }
-
-        if (!elevatorMoving && !arm.getBusy()){
+        handoffArm();
+        if (!arm.getBusy()){
             intake();
         }
     }
@@ -164,11 +158,15 @@ public class Teleop extends OpMode
     }
 
     public void ejectFromBucket(){
-        elevator.setBucketPos(90);
+        elevator.setBucketPower(0.25);
     }
 
     public void stowBucket(){
-        elevator.setBucketPos(0);
+        elevator.setBucketPower(-0.25);
+    }
+
+    public void idleBucket(){
+        elevator.setBucketPower(0.0);
     }
 
 
