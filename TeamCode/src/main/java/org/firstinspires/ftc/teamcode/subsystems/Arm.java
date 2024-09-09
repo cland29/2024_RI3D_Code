@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.constants.HardwareIDMap;
 import org.firstinspires.ftc.teamcode.util.motor.DcMotorExBuilder;
 
 public class Arm {
@@ -15,13 +16,13 @@ public class Arm {
     public final PIDFCoefficients pidCoef = new PIDFCoefficients(-0.5, 0.0, 0.0, 0.0);
 
     public Arm(HardwareMap hardwareMap, Telemetry telemtry) {
-        leftArmMotor = DcMotorExBuilder.create(hardwareMap, "armMotor")
+        leftArmMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.LEFT_ARM_MOTOR_ID)
                 .withPositionalPIDF(10, 2, 0.0, 0.0)
                 .withDirection(DcMotorSimple.Direction.FORWARD)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
                 .build();
 
-        rightArmMotor = DcMotorExBuilder.create(hardwareMap, "armMotor")
+        rightArmMotor = DcMotorExBuilder.create(hardwareMap, HardwareIDMap.RIGHT_ARM_MOTOR_ID)
                 .withPositionalPIDF(10, 2, 0.0, 0.0)
                 .withDirection(DcMotorSimple.Direction.REVERSE)
                 .withZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE)
